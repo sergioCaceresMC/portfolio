@@ -1,0 +1,25 @@
+---
+import { Icon } from 'astro-icon/components';
+---
+
+<nav class="z-20 mx-auto flex justify-center bg-white px-5 py-10 border-b-1 border-b-gray-200">
+    <img src="" alt="" />
+
+    <div id="menu" class="font-light mx-auto flex gap-15 justify-between">
+        <a href="/" class="transition-all duration-300 hover:text-blue-600 hover:scale-105 hover:translate-y-[-2px]">Home</a>
+        <a href="/technologies" class="transition-all duration-300 hover:text-blue-600 hover:scale-105 hover:translate-y-[-2px]">Technologies</a>
+        <a href="/projects" class="transition-all duration-300 hover:text-blue-600 hover:scale-105 hover:translate-y-[-2px]">Proyects</a>
+        <a href="/contact" class="transition-all duration-300 hover:text-blue-600 hover:scale-105 hover:translate-y-[-2px]">Contact</a>
+        <a 
+            href="https://github.com/tu-usuario" 
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group transition-all duration-300 hover:-translate-y-1"
+        >
+            <span class="inline-flex items-center gap-2 transition-all duration-300 bg-gray-100 px-4 py-2 rounded-lg hover:bg-blue-600 hover:text-white hover:shadow-md">
+                <Icon name="simple-icons:github" class="w-5 h-5 transition-all duration-300 group-hover:scale-110" />
+                Github
+            </span>
+        </a>
+    </div>
+</nav>
