@@ -3,7 +3,7 @@ title: MïTHA Tele-education Server
 technology:
   {
     "Proxmox": "/src/assets/technology-icons/proxmox.webp",
-    "Apache Guacamole": "/src/assets/technology-icons/guacamole.webp",
+    "Guacamole": "/src/assets/technology-icons/guacamole.webp",
     "Nginx": "/src/assets/technology-icons/nginx.webp",
     "Docker": "/src/assets/technology-icons/docker.webp",
     "MongoDB": "/src/assets/technology-icons/mongodb.webp",
