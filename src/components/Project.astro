@@ -2,6 +2,26 @@
 import { getCollection } from "astro:content";
 
 const projects = await getCollection("project");
+
+const projectImageModules = import.meta.glob<{ default: { src: string } }>(
+  "/src/assets/proyects/*.webp",
+  { eager: true },
+);
+
+const projectImageMap = new Map<string, string>();
+for (const [path, mod] of Object.entries(projectImageModules)) {
+  projectImageMap.set(path, mod.default.src);
+}
+
+const techIconModules = import.meta.glob<{ default: { src: string } }>(
+  "/src/assets/technology-icons/*.webp",
+  { eager: true },
+);
+
+const techIconMap = new Map<string, string>();
+for (const [path, mod] of Object.entries(techIconModules)) {
+  techIconMap.set(path, mod.default.src);
+}
 ---
 
 <div id="projects" class="bg-gray-950">
@@ -13,7 +33,7 @@ const projects = await getCollection("project");
         <div class="grid grid-cols-1 md:grid-cols-3 bg-white rounded-3xl mb-10 overflow-hidden shadow-lg border-2 border-gray-100">
           {/* Imagen */}
           <img
-            src={project.data.image}
+            src={projectImageMap.get(project.data.image) ?? project.data.image}
             alt={project.data.title}
             class="w-full h-64 md:h-full object-cover"
           />
@@ -34,7 +54,7 @@ const projects = await getCollection("project");
                 {Object.entries(project.data.technology).map(([name, icon]) => (
                   <div class="flex flex-col items-center gap-2 p-2 md:p-3 rounded-xl transition-all duration-300 hover:scale-105 hover:-translate-y-0.5">
                     <img
-                      src={icon}
+                      src={techIconMap.get(icon) ?? icon}
                       alt={name}
                       class="size-10 md:size-12 object-contain rounded-2xl"
                     />
