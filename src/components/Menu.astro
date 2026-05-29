@@ -1,111 +1,124 @@
 ---
-import logo from '../assets/MitaMiniWeb-blue.png';
+import logo from "../assets/MitaMiniWeb-blue.png";
 ---
 
-<div class="bg-white border-b border-b-gray-200 ">
-    <nav class="md:max-w-6xl mx-auto px-10">
-        <div class="mx-auto flex items-center justify-between px-6 md:px-0 py-4">
-            
-            <!-- Logo -->
-            <a 
-                href="https://proyecto-mitha.org/" 
-                class="flex items-center transition-all duration-300 hover:scale-105 hover:-translate-y-0.5"
-            >
-                <img src={logo.src} alt="Logo" class="size-12" />
-            </a>
+<div class="bg-white border-b border-b-gray-200">
+  <nav class="md:max-w-6xl mx-auto px-10">
+    <div class="mx-auto flex items-center justify-between px-6 md:px-0 py-4">
+      <!-- Logo -->
+      <a
+        href="https://proyecto-mitha.org/"
+        class="flex items-center transition-all duration-300 hover:scale-105 hover:-translate-y-0.5"
+      >
+        <img src={logo.src} alt="Logo" class="size-12" />
+      </a>
 
-            <!-- Botón hamburguesa -->
-            <button 
-                id="menu-btn"
-                class="flex flex-col gap-1 md:hidden"
-            >
-                <span class="w-6 h-0.5 bg-black"></span>
-                <span class="w-6 h-0.5 bg-black"></span>
-                <span class="w-6 h-0.5 bg-black"></span>
-            </button>
+      <!-- Botón hamburguesa -->
+      <button id="menu-btn" class="flex flex-col gap-1 md:hidden">
+        <span class="w-6 h-0.5 bg-black"></span>
+        <span class="w-6 h-0.5 bg-black"></span>
+        <span class="w-6 h-0.5 bg-black"></span>
+      </button>
 
-            <!-- Menu desktop -->
-            <div class="hidden md:flex font-light mx-auto gap-5 items-center">
-                <a href="/" class="p-3 transition-all duration-300 hover:scale-105 hover:-translate-y-0.5">
-                    Home
-                </a>
-
-                <a href="/technologies" class="p-3 transition-all duration-300 hover:scale-105 hover:-translate-y-0.5">
-                    Technologies
-                </a>
-
-                <a href="/projects" class="p-3 transition-all duration-300 hover:scale-105 hover:-translate-y-0.5">
-                    Projects
-                </a>
-
-                <a href="/contact" class="p-3 transition-all duration-300 hover:scale-105 hover:-translate-y-0.5">
-                    Contact
-                </a>
-            </div>
-
-            <!-- Github desktop -->
-            <a 
-                href="https://github.com/sergioCaceresMC/" 
-                target="_blank"
-                rel="noopener noreferrer"
-                class="hidden md:block p-3 group transition-all duration-300 hover:-translate-y-1"
-            >
-                <span class="inline-flex items-center gap-2 rounded-lg">
-                    <svg 
-                        viewBox="0 0 24 24" 
-                        fill="currentColor" 
-                        class="size-10 transition-all duration-300 group-hover:scale-110"
-                    >
-                        <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
-                    </svg>
-                </span>
-            </a>
-        </div>
-
-        <!-- Menu móvil -->
-        <div 
-            id="mobile-menu"
-            class="md:hidden flex flex-col items-center gap-4 pb-6 font-light"
+      <!-- Menu desktop -->
+      <div class="hidden md:flex font-light mx-auto gap-5 items-center">
+        <a
+          href="/"
+          class="p-3 transition-all duration-300 hover:scale-105 hover:-translate-y-0.5"
         >
-            <a href="/" class="transition-all duration-300 hover:scale-105">
-                Home
-            </a>
+          Home
+        </a>
 
-            <a href="/technologies" class="transition-all duration-300 hover:scale-105">
-                Technologies
-            </a>
+        <a
+          href="/technologies"
+          class="p-3 transition-all duration-300 hover:scale-105 hover:-translate-y-0.5"
+        >
+          Technologies
+        </a>
 
-            <a href="/projects" class="transition-all duration-300 hover:scale-105">
-                Projects
-            </a>
+        <a
+          href="/projects"
+          class="p-3 transition-all duration-300 hover:scale-105 hover:-translate-y-0.5"
+        >
+          Projects
+        </a>
 
-            <a href="/contact" class="transition-all duration-300 hover:scale-105">
-                Contact
-            </a>
+        <a
+          href="/contact"
+          class="p-3 transition-all duration-300 hover:scale-105 hover:-translate-y-0.5"
+        >
+          Contact
+        </a>
+      </div>
 
-            <!-- Github móvil -->
-            <a 
-                href="https://github.com/sergioCaceresMC/" 
-                target="_blank"
-                rel="noopener noreferrer"
-                class="group transition-all duration-300 hover:-translate-y-1"
-            >
-                <svg 
-                    viewBox="0 0 24 24" 
-                    fill="currentColor" 
-                    class="size-9 transition-all duration-300 group-hover:scale-110"
-                >
-                    <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
-                </svg>
-            </a>
-        </div>
-    </nav>
+      <!-- Github desktop -->
+      <a
+        href="https://github.com/sergioCaceresMC/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="hidden md:block p-3 group transition-all duration-300 hover:-translate-y-1"
+      >
+        <span class="inline-flex items-center gap-2 rounded-lg">
+          <svg
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            class="size-10 transition-all duration-300 group-hover:scale-110"
+          >
+            <path
+              d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"
+            ></path>
+          </svg>
+        </span>
+      </a>
+    </div>
+
+    <!-- Menu móvil -->
+    <div
+      id="mobile-menu"
+      class="md:hidden flex flex-col items-center gap-4 pb-6 font-light"
+    >
+      <a href="/" class="transition-all duration-300 hover:scale-105"> Home </a>
+
+      <a
+        href="/technologies"
+        class="transition-all duration-300 hover:scale-105"
+      >
+        Technologies
+      </a>
+
+      <a href="/projects" class="transition-all duration-300 hover:scale-105">
+        Projects
+      </a>
+
+      <a href="/contact" class="transition-all duration-300 hover:scale-105">
+        Contact
+      </a>
+
+      <!-- Github móvil -->
+      <a
+        href="https://github.com/sergioCaceresMC/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="group transition-all duration-300 hover:-translate-y-1"
+      >
+        <svg
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          class="size-9 transition-all duration-300 group-hover:scale-110"
+        >
+          <path
+            d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"
+          ></path>
+        </svg>
+      </a>
+    </div>
+  </nav>
 </div>
 <script>
-    const menuBtn = document.getElementById("menu-btn");
-    const mobileMenu = document.getElementById("mobile-menu");
+  const menuBtn = document.getElementById("menu-btn");
+  const mobileMenu = document.getElementById("mobile-menu");
 
-    menuBtn?.addEventListener("click", () => {
-        mobileMenu?.classList.toggle("hidden");
-    });
+  menuBtn?.addEventListener("click", () => {
+    mobileMenu?.classList.toggle("hidden");
+  });
 </script>

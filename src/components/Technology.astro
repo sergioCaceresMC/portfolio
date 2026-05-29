@@ -1,0 +1,258 @@
+---
+import { getCollection } from "astro:content";
+
+interface TechItem {
+  title: string;
+  category: string;
+  description: string;
+  icon: string;
+  iconSrc: string;
+}
+
+const technologies = await getCollection("technology");
+
+type GlobModule = {
+  default: {
+    src: string;
+  };
+};
+
+const iconModules = import.meta.glob<GlobModule>(
+  "/src/assets/technology-icons/*.webp",
+  { eager: true },
+);
+
+const iconMap = new Map<string, string>();
+
+for (const [path, mod] of Object.entries(iconModules)) {
+  const filename = path.split("/").pop();
+
+  if (filename) {
+    iconMap.set(filename, mod.default.src);
+  }
+}
+
+const categoryOrder = [
+  "Languages",
+  "IoT / Robotics",
+  "Virtualization / Systems",
+  "Frontend",
+  "Backend",
+  "Databases",
+  "Infrastructure & DevOps",
+];
+
+const categories = [...new Set(technologies.map((t) => t.data.category))].sort(
+  (a, b) => categoryOrder.indexOf(a) - categoryOrder.indexOf(b),
+);
+
+//const categories = [...new Set(technologies.map((t) => t.data.category))];
+
+const techItems: TechItem[] = technologies.map((t) => ({
+  title: t.data.title,
+  category: t.data.category,
+  description: t.data.description,
+  icon: t.data.icon,
+  iconSrc: iconMap.get(t.data.icon) ?? "",
+}));
+---
+
+<script
+  id="tech-data"
+  type="application/json"
+  set:html={JSON.stringify(techItems)}
+/>
+
+<div class="bg-white">
+  <!-- Mobile dropdown -->
+  <div class="px-4 pt-4 md:hidden">
+    <select
+      id="category-select"
+      class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-black"
+    >
+      {categories.map((cat) => <option value={cat}>{cat}</option>)}
+    </select>
+  </div>
+
+  <div class="flex flex-col md:flex-row">
+    <!-- Sidebar -->
+    <nav
+      class="hidden w-48 shrink-0 border-r border-gray-100 px-4 pt-4 pb-5 md:block"
+    >
+      <div class="flex flex-col gap-1">
+        {
+          categories.map((cat) => (
+            <button
+              data-category={cat}
+              class="cat-btn w-full rounded-lg px-3 py-2 text-left text-sm transition-colors"
+            >
+              {cat}
+            </button>
+          ))
+        }
+      </div>
+    </nav>
+
+    <!-- Content -->
+    <div class="flex min-w-0 flex-1 flex-col p-4 place-content-between">
+      <!-- Icon grid -->
+      <div
+        id="icon-grid"
+        class="grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-4"
+      >
+        {
+          techItems.map((tech) => (
+            <button
+              data-title={tech.title}
+              data-category={tech.category}
+              class="tech-icon flex flex-col items-center gap-2 rounded-xl p-4 transition-all"
+            >
+              {tech.iconSrc ? (
+                <img
+                  src={tech.iconSrc}
+                  alt={tech.title}
+                  class="size-16 object-contain rounded-2xl"
+                />
+              ) : (
+                <div class="flex size-16 items-center justify-center rounded-lg bg-gray-100 text-xs text-gray-400">
+                  ?
+                </div>
+              )}
+
+              <span class="text-center text-xs font-medium text-gray-600">
+                {tech.title}
+              </span>
+            </button>
+          ))
+        }
+      </div>
+
+      <!-- Description -->
+      <div class="mt-6 rounded-xl border bg-gray-950 text-white p-4">
+        <h3 id="desc-title" class="mb-1 text-lg font-semibold"></h3>
+
+        <p id="desc-text" class="text-sm leading-relaxed text-gray-300"></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .cat-btn {
+    margin-bottom: 0.5rem;
+  }
+
+  .cat-btn.active {
+    background-color: #000;
+    color: #fff;
+  }
+
+  .cat-btn:not(.active) {
+    background-color: transparent;
+  }
+
+  .cat-btn:not(.active):hover {
+    background-color: #f3f4f6;
+    cursor: pointer;
+  }
+
+  .tech-icon.active {
+    box-shadow: 0 0 0 2px #000;
+    border-radius: 0.75rem;
+  }
+
+  .tech-icon:not(.active):hover {
+    background-color: #f9fafb;
+    cursor: pointer;
+  }
+</style>
+
+<script>
+  const script = document.getElementById("tech-data");
+
+  const data = JSON.parse(script?.textContent ?? "[]");
+
+  const iconGrid = document.getElementById("icon-grid");
+  const descTitle = document.getElementById("desc-title");
+  const descText = document.getElementById("desc-text");
+
+  if (!data.length && iconGrid) {
+    iconGrid.innerHTML =
+      "<p class='text-sm text-gray-400'>No technologies loaded.</p>";
+  }
+
+  let activeCategory = "Languages";
+
+  function getFirstTech(category) {
+    return data.find((t) => t.category === category);
+  }
+
+  function showDescription(tech) {
+    if (!descTitle || !descText) {
+      return;
+    }
+
+    descTitle.textContent = tech.title;
+    descText.textContent = tech.description;
+
+    document.querySelectorAll(".tech-icon").forEach((el) => {
+      el.classList.toggle("active", el.dataset.title === tech.title);
+    });
+  }
+
+  function renderCategory(category) {
+    activeCategory = category;
+
+    document.querySelectorAll(".tech-icon").forEach((el) => {
+      el.classList.toggle("hidden", el.dataset.category !== category);
+    });
+
+    const first = getFirstTech(category);
+
+    if (first) {
+      showDescription(first);
+    }
+
+    document.querySelectorAll(".cat-btn").forEach((btn) => {
+      btn.classList.toggle("active", btn.dataset.category === category);
+    });
+
+    const select = document.getElementById("category-select");
+
+    if (select) {
+      select.value = category;
+    }
+  }
+
+  document.querySelectorAll(".cat-btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      renderCategory(btn.dataset.category);
+    });
+  });
+
+  const catSelect = document.getElementById("category-select");
+
+  if (catSelect) {
+    catSelect.addEventListener("change", () => {
+      renderCategory(catSelect.value);
+    });
+  }
+
+  iconGrid?.addEventListener("click", (e) => {
+    const btn = e.target.closest(".tech-icon");
+
+    if (!btn || btn.classList.contains("hidden")) {
+      return;
+    }
+
+    const tech = data.find((t) => t.title === btn.dataset.title);
+
+    if (tech) {
+      showDescription(tech);
+    }
+  });
+
+  if (activeCategory) {
+    renderCategory(activeCategory);
+  }
+</script>
