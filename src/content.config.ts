@@ -11,4 +11,18 @@ const technology = defineCollection({
   }),
 });
 
-export const collections = { technology };
+const project = defineCollection({
+  loader: glob({ pattern: "**/*.md", base: "./src/content/projects" }),
+  schema: z.object({
+    title: z.string(),
+    technology: z.record(z.string(), z.string()), // 👈 AQUÍ EL CAMBIO
+    description: z.string(),
+    image: z.string(),
+    url: z.string().url(),
+  }),
+});
+
+export const collections = {
+  technology,
+  project,
+};

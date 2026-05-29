@@ -1,23 +1,60 @@
 ---
+import { getCollection } from "astro:content";
 
+const projects = await getCollection("project");
 ---
 
-<div class="bg-gray-950 text-white">
+<div class="bg-gray-950">
   <div class="md:max-w-6xl mx-auto mt-10 p-10 gap-5">
-    <h2 class="text-4xl md:text-6xl my-10">Projects</h2>
-    <!-- TEXTO -->
-    <div class="col-span-2 py-15">
-      <p>
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Rerum mollitia
-        eligendi maxime laudantium deserunt iure omnis natus in ex voluptates
-        illo quaerat nulla, dolor quidem. Quidem mollitia autem impedit laborum.
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illum minus
-        sint quasi, ad omnis qui quae nostrum repellat corrupti fuga expedita
-        cumque velit odio perferendis numquam esse distinctio vero vel.
-      </p>
-    </div>
+    <h2 class="text-4xl md:text-6xl my-10 text-white">Projects</h2>
 
-    <!-- IMAGEN DE FONDO -->
-    <div class="hidden md:block h-full bg-cover bg-center"></div>
+    {
+      projects.map((project) => (
+        <div class="grid grid-cols-3 bg-white rounded-3xl mb-10 overflow-hidden shadow-lg">
+          {/* Imagen */}
+          <img
+            src={project.data.image}
+            alt={project.data.title}
+            class="col-span-1 w-full h-full object-cover"
+          />
+
+          {/* Información */}
+          <div class="col-span-2 p-10 flex flex-col justify-between">
+            <div>
+              <h3 class="text-2xl font-semibold mb-3">{project.data.title}</h3>
+
+              <p class="text-gray-700 mb-5">{project.data.description}</p>
+
+              {/* Tecnologías */}
+              <div class="flex flex-wrap gap-3">
+                {Object.entries(project.data.technology).map(([name, icon]) => (
+                  <div class="flex flex-col items-center gap-2 p-3 rounded-xl transition-all duration-300 hover:scale-105 hover:-translate-y-0.5">
+                    <img
+                      src={icon}
+                      alt={name}
+                      class="size-12 object-contain rounded-2xl "
+                    />
+                    <span class="text-xs font-medium text-gray-600">
+                      {name}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Botón */}
+            <div class="flex justify-end">
+              <a
+                href={project.data.url}
+                target="_blank"
+                class="inline-block w-fit mt-6 px-4 py-2 rounded-2xl bg-gray-900 text-white transition-all duration-300 hover:scale-105 hover:-translate-y-0.5"
+              >
+                Go to project
+              </a>
+            </div>
+          </div>
+        </div>
+      ))
+    }
   </div>
 </div>
