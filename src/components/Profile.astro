@@ -1,5 +1,6 @@
 ---
 import profile from "../assets/image_cv.jpg";
+import cv from "../assets/cv/CV_Sergio_Miranda.pdf";
 ---
 
 <div
@@ -14,12 +15,13 @@ import profile from "../assets/image_cv.jpg";
       <br />
       BIOMEDICAL ENGINEERING.
     </h1>
-    <button
-      class="mx-auto md:mx-0 mt-5 px-3 py-2 rounded-2xl bg-gray-900 text-white
-        transition-all duration-300 hover:scale-105 hover:-translate-y-0.5
-        cursor-pointer"
-      >Download CV</button
+    <a
+      href={cv}
+      download
+      class="inline-block mx-auto md:mx-0 mt-5 px-3 py-2 rounded-2xl bg-gray-900 text-white transition-all duration-300 hover:scale-105 hover:-translate-y-0.5"
     >
+      Download CV
+    </a>
   </div>
 
   <!-- Photo -->
