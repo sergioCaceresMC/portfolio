@@ -5,7 +5,7 @@ technology:
     "C": "/src/assets/technology-icons/c.webp",
     "Arduino": "/src/assets/technology-icons/arduino.webp",
     "Python": "/src/assets/technology-icons/python.webp",
-    "Flask": "/src/assets/technology-icons/flask.webp",
+    "Astro": "/src/assets/technology-icons/astro.webp",
     "ChromaDB": "/src/assets/technology-icons/chromadb.webp",
     "Freecad": "/src/assets/technology-icons/freecad.webp",
     "Github Actions": "/src/assets/technology-icons/github.webp",
