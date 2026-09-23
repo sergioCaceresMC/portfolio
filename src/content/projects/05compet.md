@@ -9,5 +9,5 @@ technology:
   }
 url: https://github.com/proyectomitha/FEDEPAT-proyecto
 description: A project for the national skating federation. It consists of a local system for organizing competitions, displaying results, and organizing teams.
-image: /src/assets/proyects/fedepat.jpg
+image: /src/assets/proyects/fedepat.webp
 ---
